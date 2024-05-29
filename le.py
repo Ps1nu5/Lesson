@@ -1,7 +1,13 @@
+my_list = [42, 69, 322, 13, 0, 99, -5, 9, 8, 7, -6, 5]
 
-s1 = {1, 2, 3, 4}
-s2 = {3, 4, 5, 6}
+index = 0
 
-s3 = s1.union(s2)
+while index < len(my_list):
 
-print(s3)
+    if my_list[index] < 0:
+        break
+
+    if my_list[index] > 0:
+        print(my_list[index])
+
+    index += 1
