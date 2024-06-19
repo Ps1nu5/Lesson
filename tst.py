@@ -1,10 +1,24 @@
-n = int(input('введите число'))
-def isPrime(n):
-  if n == 1:
-    return False
-  for i in range(2, n):
-    if n % i == 0:
-      return False
-  return True
+from tkinter import *
 
-print(isPrime(n)) 
+gameRun = False
+def click(text):
+    global gameRun
+    btn.config(text=str(text))
+    gameRun = not gameRun
+    timer()
+
+def timer():
+    global time
+    if gameRun:
+        time -= 1
+        lbl.config(text=str(time))
+        btn.after(1000, timer)
+
+time = 10
+root = Tk()
+lbl = Label(root, text=str(time))
+lbl.pack()
+
+btn = Button(root, text='CLICK ME!', command=lambda : click('123'))
+btn.pack()
+root.mainloop()
