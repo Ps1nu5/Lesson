@@ -1,7 +1,7 @@
 def calculate_structure_sum(*args):
     calc = 0
     for i in args:
-        if isinstance(i, int):
+        if isinstance(i, (int, float)):
             calc += i
         elif isinstance(i, str):
             calc += len(i)
