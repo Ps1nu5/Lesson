@@ -2,17 +2,25 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
+import os.path
+
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, 'count.txt')
+if not os.path.isfile(filename):
+    with open('count.txt', 'w') as f:
+        f.write('0')
+
 root = Tk()
-root.title = 'Счётчик'
+root.title('Счётчик')
 root.resizable(False, False)
 root.attributes("-topmost",True)
-with open('count.csv', 'r') as file:
+with open('count.txt', 'r') as file:
     hw_count = int(file.readline())
 print(hw_count)
 
 
 def write_file(line):
-    with open('count.csv', 'w') as file:
+    with open('count.txt', 'w') as file:
         file.write(str(line))
 
 
