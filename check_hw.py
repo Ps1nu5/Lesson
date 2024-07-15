@@ -12,11 +12,12 @@ if not os.path.isfile(filename):
 
 root = Tk()
 root.title('Счётчик')
+root.geometry('270x100+-6+788')
 root.resizable(False, False)
-root.attributes("-topmost",True)
+root.attributes("-topmost", True)
 with open('count.txt', 'r') as file:
     hw_count = int(file.readline())
-print(hw_count)
+#print(hw_count)
 
 
 def write_file(line):
@@ -29,6 +30,8 @@ def click_plus():
     hw_count += 1
     lbl_count.config(text=str(hw_count))
     write_file(hw_count)
+    #print(root.winfo_x(), root.winfo_y())
+
 
 
 def click_minus():

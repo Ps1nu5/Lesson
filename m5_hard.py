@@ -1,6 +1,3 @@
-# Задание "Свой YouTube"
-
-# Классы и объекты
 from time import sleep
 
 
@@ -8,7 +5,7 @@ class User:
     def __init__(self, nickname, password, age):
         self.nickname = nickname
         self.password = password
-        self.age = age  # Возраст
+        self.age = age
 
     def __str__(self):
         return f"User: {self.nickname}, Password: {self.password}, Age: {self.age}"
@@ -33,8 +30,9 @@ class UrTube:
             if user.nickname == nickname:
                 print(f"Пользователь {nickname} уже существует")
                 return
-        # Добавляем нового пользователя в список
+
         self.users_list.append(User(nickname, hash(password), age))
+        self.log_in(nickname, password)
         # print(f'{nickname} успешно зарегистрирован!')
 
     def log_in(self, login, password):
@@ -57,7 +55,7 @@ class UrTube:
 
     def add(self, *video_lst):
         for video in video_lst:
-            if video.title not in [v.title for v in self.videos_list]:  # Перебор списка и сравнения названий
+            if video.title not in [v.title for v in self.videos_list]:
                 self.videos_list.append(video)
 
     def get_videos(self, search_word):
@@ -78,28 +76,28 @@ class UrTube:
                     return
                 print('Воспроизведение:', end=' ')
                 for second in range(video.duration):
-                    sleep(0.25)
+                    sleep(1)
+                    video.time_now += 1
                     print(second + 1, end=' ')
                 return print('Конец видео')
+            video.time_now = 0
         print('Видео не найдено')
 
 
 ur = UrTube()
 
-# рег акк
+
 ur.register('user1', 'pass1', 12)
 ur.register('user2', 'pass2', 18)
 ur.register('vasya_pupkin', 'не дорос', 10)
-# ап видео
+
 v1 = Video('Лучший язык программирования 2024 года', 10)
 v2 = Video('Для чего девушкам парень программист?', 10, True)
 ur.add(v1, v2)
 
-# Проверка поиска видео
 print(ur.get_videos('лучший'))
 print(ur.get_videos('ПРОГ'))
 
-# Проверка на вход пользователя и возрастное ограничение
 ur.watch_video('Для чего девушкам парень программист?')
 ur.log_in('user1', 'pass1')
 ur.watch_video('Для чего девушкам парень программист?')
@@ -107,11 +105,8 @@ ur.log_out()
 ur.log_in('user2', 'pass2')
 ur.watch_video('Для чего девушкам парень программист?')
 
-# Попытка воспроизведения несуществующего видео
 ur.watch_video('Лучший язык программирования 2024 года!')
 
-# Регистрация нового пользователя с существующим в БД
 ur.register('vasya_pupkin', 'не дорос', 10)
 
-# Вывод информации о пользователе под которым работаем
-print('\n\t\t', str(ur.current_user))
+print(ur.current_user)
