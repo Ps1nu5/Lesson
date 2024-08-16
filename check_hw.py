@@ -12,7 +12,7 @@ if not os.path.isfile(filename):
 
 root = Tk()
 root.title('Счётчик')
-root.geometry('270x100+-6+788')
+root.geometry('270x120+-6+788')
 root.resizable(False, False)
 root.attributes("-topmost", True)
 with open('count.txt', 'r') as file:
@@ -53,13 +53,13 @@ def reset():
 lbl = ttk.Label(root, text='CЧЁТЧИК ПРОВЕРКИ ДЗ', font=('Verdana', 14, 'bold'))
 lbl.grid(row=1, columnspan=3, column=1)
 
-btn_minus = ttk.Button(root, text='-', command=click_minus)
+btn_minus = ttk.Button(root, text='\n-\n', command=click_minus)
 btn_minus.grid(row=2, column=1)
 
 lbl_count = ttk.Label(root, text=str(hw_count), font=('Verdana', 20, 'bold'))
 lbl_count.grid(row=2, column=2)
 
-btn_plus = ttk.Button(root, text='+', command=click_plus)
+btn_plus = ttk.Button(root, text='\n+\n', command=click_plus)
 btn_plus.grid(row=2, column=3)
 
 btn_reset = ttk.Button(root, text='Сброс', command=reset)
